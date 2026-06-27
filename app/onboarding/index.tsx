@@ -1,40 +1,45 @@
 import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import { Image, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { LinearGradient } from 'expo-linear-gradient';
 import { router } from 'expo-router';
 import Icon from '../../src/components/Icon';
+import Ornament from '../../src/components/Ornament';
 import Button from '../../src/components/Button';
-import PoseArt from '../../src/components/PoseArt';
+import { HERO_IMAGE } from '../../src/data/poseImages';
 import { colors, layout, spacing, type } from '../../src/theme';
 
 const HIGHLIGHTS = [
-  { icon: 'person-arms-up', text: 'Guided routines for every level' },
+  { icon: 'flower1', text: 'Guided routines for every level' },
   { icon: 'stopwatch', text: 'Follow-along timers, no thinking' },
   { icon: 'graph-up-arrow', text: 'Build flexibility you can feel' },
 ] as const;
 
 export default function Welcome() {
   return (
-    <SafeAreaView style={styles.safe} edges={['top', 'bottom']}>
+    <SafeAreaView style={styles.safe} edges={['bottom']}>
       <View style={styles.hero}>
-        <View style={styles.artRow}>
-          <PoseArt pose="splitSlide" size={120} stroke={colors.ink} />
-          <PoseArt pose="forwardFold" size={96} stroke={colors.inkFaint} />
-        </View>
+        <Image source={HERO_IMAGE} style={StyleSheet.absoluteFill as any} resizeMode="cover" />
+        <LinearGradient
+          colors={['rgba(0,0,0,0.15)', 'rgba(255,255,255,0)', colors.bg]}
+          locations={[0, 0.55, 1]}
+          style={StyleSheet.absoluteFill}
+        />
       </View>
 
       <View style={styles.content}>
         <Text style={styles.brand}>STRETCH</Text>
-        <Text style={styles.title}>Your daily ritual for a more flexible body.</Text>
+        <Ornament icon="flower1" />
+        <Text style={styles.title}>Your daily ritual for a softer, more flexible body.</Text>
         <Text style={styles.subtitle}>
-          Calm, guided stretching built around your goals — five minutes at a time.
+          Calm, guided stretching shaped around you — five mindful minutes at a time.
         </Text>
 
         <View style={styles.list}>
           {HIGHLIGHTS.map((h) => (
             <View key={h.text} style={styles.listItem}>
               <View style={styles.listIcon}>
-                <Icon name={h.icon} size={18} color={colors.ink} />
+                <Icon name={h.icon} size={16} color={colors.ink} />
               </View>
               <Text style={styles.listText}>{h.text}</Text>
             </View>
@@ -43,7 +48,7 @@ export default function Welcome() {
       </View>
 
       <View style={styles.footer}>
-        <Button label="Get started" onPress={() => router.push('/onboarding/goal')} iconRight="arrow-right" />
+        <Button label="Begin your ritual" onPress={() => router.push('/onboarding/goal')} iconRight="arrow-right" />
         <Text style={styles.fine}>Takes about a minute · No account needed</Text>
       </View>
     </SafeAreaView>
@@ -52,28 +57,30 @@ export default function Welcome() {
 
 const styles = StyleSheet.create({
   safe: { flex: 1, backgroundColor: colors.bg },
-  hero: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    minHeight: 200,
-  },
-  artRow: { flexDirection: 'row', alignItems: 'flex-end', gap: spacing.lg },
+  hero: { height: '44%', width: '100%', backgroundColor: colors.surfaceSunken },
   content: {
+    flex: 1,
     paddingHorizontal: layout.screenPadding,
     width: '100%',
     maxWidth: layout.maxContentWidth,
     alignSelf: 'center',
+    marginTop: -spacing.sm,
   },
-  brand: { ...type.overline, letterSpacing: 4, marginBottom: spacing.base },
-  title: { ...type.display, fontSize: 34, lineHeight: 38 },
-  subtitle: { ...type.body, marginTop: spacing.base, fontSize: 17, lineHeight: 25 },
-  list: { marginTop: spacing.xl, gap: spacing.md },
+  brand: { ...type.overline, letterSpacing: 5, textAlign: 'center', marginBottom: spacing.md },
+  title: {
+    ...type.display,
+    fontSize: 32,
+    lineHeight: 37,
+    textAlign: 'center',
+    marginTop: spacing.lg,
+  },
+  subtitle: { ...type.body, marginTop: spacing.md, fontSize: 16, lineHeight: 23, textAlign: 'center' },
+  list: { marginTop: spacing.xl, gap: spacing.md, alignSelf: 'center' },
   listItem: { flexDirection: 'row', alignItems: 'center', gap: spacing.md },
   listIcon: {
-    width: 38,
-    height: 38,
-    borderRadius: 19,
+    width: 34,
+    height: 34,
+    borderRadius: 17,
     backgroundColor: colors.surface,
     alignItems: 'center',
     justifyContent: 'center',
@@ -81,7 +88,7 @@ const styles = StyleSheet.create({
   listText: { ...type.bodyStrong, color: colors.ink },
   footer: {
     paddingHorizontal: layout.screenPadding,
-    paddingTop: spacing.xl,
+    paddingTop: spacing.base,
     paddingBottom: spacing.sm,
     width: '100%',
     maxWidth: layout.maxContentWidth,

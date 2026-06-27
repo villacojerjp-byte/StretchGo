@@ -3,6 +3,7 @@ import { Pressable, StyleSheet, Text, View } from 'react-native';
 import { router } from 'expo-router';
 import * as Haptics from 'expo-haptics';
 import Icon from '../../src/components/Icon';
+import Ornament from '../../src/components/Ornament';
 import { Screen, SectionHeader, Card } from '../../src/components/primitives';
 import { FeaturedRoutineCard } from '../../src/components/RoutineCard';
 import { useStore, WATER_GOAL } from '../../src/store/store';
@@ -156,6 +157,11 @@ export default function TodayScreen() {
           </Pressable>
         ))}
       </View>
+
+      <View style={styles.closing}>
+        <Ornament icon="flower1" />
+        <Text style={styles.closingText}>Move gently. Breathe deeply.</Text>
+      </View>
     </Screen>
   );
 }
@@ -243,4 +249,7 @@ const styles = StyleSheet.create({
   quickMinLabel: { ...type.caption, color: colors.inkTertiary, marginTop: -2 },
   quickTitle: { ...type.h3, color: colors.ink },
   quickSub: { ...type.small, color: colors.inkTertiary, marginTop: 2 },
+
+  closing: { alignItems: 'center', marginTop: spacing.xxl, gap: spacing.md },
+  closingText: { ...type.serif, color: colors.inkTertiary, fontSize: 18 },
 });

@@ -4,8 +4,9 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import Icon from '../../src/components/Icon';
 import { router, useLocalSearchParams } from 'expo-router';
 import * as Haptics from 'expo-haptics';
+import { LinearGradient } from 'expo-linear-gradient';
 import ProgressRing from '../../src/components/ProgressRing';
-import PoseArt from '../../src/components/PoseArt';
+import PoseImage from '../../src/components/PoseImage';
 import Button from '../../src/components/Button';
 import { ProgressBar } from '../../src/components/primitives';
 import { getRoutine } from '../../src/data/routines';
@@ -122,7 +123,11 @@ export default function SessionPlayer() {
       {/* Pose stage */}
       <View style={styles.stage}>
         <View style={styles.poseBox}>
-          <PoseArt pose={current.pose} size={210} stroke={colors.ink} />
+          <PoseImage pose={current.pose} style={StyleSheet.absoluteFill as any} resizeMode="cover" />
+          <LinearGradient
+            colors={['rgba(0,0,0,0.12)', 'transparent', 'rgba(0,0,0,0.06)']}
+            style={StyleSheet.absoluteFill}
+          />
         </View>
       </View>
 
@@ -182,7 +187,7 @@ function Completion({ routineTitle, minutes, count }: { routineTitle: string; mi
     <SafeAreaView style={styles.safe} edges={['top', 'bottom']}>
       <View style={styles.doneWrap}>
         <View style={styles.doneArt}>
-          <PoseArt pose="childPose" size={150} stroke={colors.ink} />
+          <PoseImage pose="breathing" style={StyleSheet.absoluteFill as any} resizeMode="cover" />
         </View>
         <Text style={styles.doneKicker}>SESSION COMPLETE</Text>
         <Text style={styles.doneTitle}>Beautifully done.</Text>
@@ -235,11 +240,10 @@ const styles = StyleSheet.create({
   poseBox: {
     width: '100%',
     maxWidth: layout.maxContentWidth,
-    aspectRatio: 1.25,
-    backgroundColor: colors.surface,
+    aspectRatio: 1.15,
+    backgroundColor: colors.surfaceSunken,
     borderRadius: radius.xl,
-    alignItems: 'center',
-    justifyContent: 'center',
+    overflow: 'hidden',
   },
 
   info: { alignItems: 'center', paddingHorizontal: layout.screenPadding },
@@ -272,7 +276,7 @@ const styles = StyleSheet.create({
   doneWrap: { flex: 1, alignItems: 'center', justifyContent: 'center', paddingHorizontal: layout.screenPadding },
   doneArt: {
     width: 200, height: 200, borderRadius: 100, backgroundColor: colors.surface,
-    alignItems: 'center', justifyContent: 'center', marginBottom: spacing.xl,
+    overflow: 'hidden', marginBottom: spacing.xl,
   },
   doneKicker: { ...type.overline, letterSpacing: 3 },
   doneTitle: { ...type.display, fontSize: 36, marginTop: spacing.sm },

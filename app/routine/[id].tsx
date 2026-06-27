@@ -2,9 +2,10 @@ import React from 'react';
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { router, useLocalSearchParams } from 'expo-router';
+import { LinearGradient } from 'expo-linear-gradient';
 import Icon, { BiName } from '../../src/components/Icon';
 import Button from '../../src/components/Button';
-import PoseArt from '../../src/components/PoseArt';
+import PoseImage from '../../src/components/PoseImage';
 import { Pill } from '../../src/components/primitives';
 import { getRoutine } from '../../src/data/routines';
 import { colors, layout, radius, spacing, type } from '../../src/theme';
@@ -37,7 +38,15 @@ export default function RoutineDetail() {
 
       <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.scroll}>
         <View style={styles.hero}>
-          <PoseArt pose={routine.exercises[1]?.pose ?? 'forwardFold'} size={150} stroke={colors.ink} />
+          <PoseImage
+            pose={routine.exercises[1]?.pose ?? 'forwardFold'}
+            style={StyleSheet.absoluteFill as any}
+            resizeMode="cover"
+          />
+          <LinearGradient
+            colors={['rgba(0,0,0,0.18)', 'transparent', 'rgba(0,0,0,0.12)']}
+            style={StyleSheet.absoluteFill}
+          />
         </View>
 
         <Text style={styles.category}>{routine.category.toUpperCase()}</Text>
@@ -64,9 +73,7 @@ export default function RoutineDetail() {
         <View style={styles.sequence}>
           {routine.exercises.map((e, i) => (
             <View key={e.id} style={[styles.exRow, i === routine.exercises.length - 1 && { borderBottomWidth: 0 }]}>
-              <View style={styles.exArt}>
-                <PoseArt pose={e.pose} size={40} stroke={colors.ink} />
-              </View>
+              <PoseImage pose={e.pose} style={styles.exArt as any} resizeMode="cover" />
               <View style={{ flex: 1 }}>
                 <Text style={styles.exName}>
                   {e.name}
@@ -116,11 +123,10 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
   },
   hero: {
-    height: 200,
-    backgroundColor: colors.surface,
+    height: 300,
+    backgroundColor: colors.surfaceSunken,
     borderRadius: radius.xl,
-    alignItems: 'center',
-    justifyContent: 'center',
+    overflow: 'hidden',
     marginBottom: spacing.xl,
   },
   category: { ...type.overline },
@@ -151,8 +157,8 @@ const styles = StyleSheet.create({
     borderBottomColor: colors.line,
   },
   exArt: {
-    width: 52, height: 52, borderRadius: radius.sm, backgroundColor: colors.surface,
-    alignItems: 'center', justifyContent: 'center',
+    width: 54, height: 54, borderRadius: radius.sm, backgroundColor: colors.surface,
+    overflow: 'hidden',
   },
   exName: { ...type.bodyStrong, color: colors.ink },
   exSide: { ...type.caption, color: colors.inkTertiary, textTransform: 'capitalize' },

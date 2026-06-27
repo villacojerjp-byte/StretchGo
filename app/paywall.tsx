@@ -5,7 +5,7 @@ import Icon from '../src/components/Icon';
 import { router } from 'expo-router';
 import * as Haptics from 'expo-haptics';
 import Button from '../src/components/Button';
-import PoseArt from '../src/components/PoseArt';
+import PoseImage from '../src/components/PoseImage';
 import { useStore } from '../src/store/store';
 import { colors, layout, radius, spacing, type } from '../src/theme';
 
@@ -43,7 +43,7 @@ export default function Paywall() {
 
       <ScrollView showsVerticalScrollIndicator={false} contentContainerStyle={styles.scroll}>
         <View style={styles.art}>
-          <PoseArt pose="splitSlide" size={128} stroke={colors.ink} />
+          <PoseImage pose="splitSlide" style={styles.artImg as any} resizeMode="cover" />
         </View>
 
         <Text style={styles.kicker}>STRETCH PREMIUM</Text>
@@ -155,7 +155,8 @@ const styles = StyleSheet.create({
     maxWidth: layout.maxContentWidth,
     alignSelf: 'center',
   },
-  art: { alignItems: 'center', marginTop: spacing.sm, marginBottom: spacing.lg },
+  art: { marginTop: spacing.sm, marginBottom: spacing.lg },
+  artImg: { width: '100%', height: 200, borderRadius: radius.lg, backgroundColor: colors.surfaceSunken },
   kicker: { ...type.overline, letterSpacing: 3, textAlign: 'center' },
   title: { ...type.title, fontSize: 30, lineHeight: 34, textAlign: 'center', marginTop: spacing.sm },
   features: { marginTop: spacing.xl, marginBottom: spacing.xl, gap: spacing.md },
