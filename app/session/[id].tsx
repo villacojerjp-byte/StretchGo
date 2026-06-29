@@ -1,5 +1,5 @@
 import React, { useCallback, useEffect, useRef, useState } from 'react';
-import { Pressable, StyleSheet, Text, View } from 'react-native';
+import { Pressable, StyleSheet, Text, View, useWindowDimensions } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import Icon from '../../src/components/Icon';
 import { router, useLocalSearchParams } from 'expo-router';
@@ -26,6 +26,13 @@ export default function SessionPlayer() {
   const [prepLeft, setPrepLeft] = useState(PREP_SECONDS);
   const [finished, setFinished] = useState(false);
   const logged = useRef(false);
+
+  // Explicit pixel sizing for the pose photo. react-native-web does NOT paint
+  // an image that fills its parent via aspectRatio + absolute-fill (the height
+  // never resolves), so we compute a fixed pixel box like the onboarding hero.
+  const { width: winW, height: winH } = useWindowDimensions();
+  const poseW = Math.min(winW - layout.screenPadding * 2, layout.maxContentWidth);
+  const poseH = Math.round(Math.min(poseW / 1.15, winH * 0.46));
 
   const total = routine?.exercises.length ?? 0;
   const current = routine?.exercises[index];
@@ -122,8 +129,12 @@ export default function SessionPlayer() {
 
       {/* Pose stage */}
       <View style={styles.stage}>
-        <View style={styles.poseBox}>
-          <PoseImage pose={current.pose} style={StyleSheet.absoluteFill as any} resizeMode="cover" />
+        <View style={[styles.poseBox, { width: poseW, height: poseH }]}>
+          <PoseImage
+            pose={current.pose}
+            style={{ width: '100%', height: '100%' }}
+            resizeMode="cover"
+          />
           <LinearGradient
             colors={['rgba(0,0,0,0.12)', 'transparent', 'rgba(0,0,0,0.06)']}
             style={StyleSheet.absoluteFill}
@@ -187,7 +198,7 @@ function Completion({ routineTitle, minutes, count }: { routineTitle: string; mi
     <SafeAreaView style={styles.safe} edges={['top', 'bottom']}>
       <View style={styles.doneWrap}>
         <View style={styles.doneArt}>
-          <PoseImage pose="breathing" style={StyleSheet.absoluteFill as any} resizeMode="cover" />
+          <PoseImage pose="breathing" style={{ width: '100%', height: '100%' }} resizeMode="cover" />
         </View>
         <Text style={styles.doneKicker}>SESSION COMPLETE</Text>
         <Text style={styles.doneTitle}>Beautifully done.</Text>
@@ -238,9 +249,7 @@ const styles = StyleSheet.create({
 
   stage: { flex: 1, alignItems: 'center', justifyContent: 'center', paddingHorizontal: layout.screenPadding },
   poseBox: {
-    width: '100%',
-    maxWidth: layout.maxContentWidth,
-    aspectRatio: 1.15,
+    alignSelf: 'center',
     backgroundColor: colors.surfaceSunken,
     borderRadius: radius.xl,
     overflow: 'hidden',
