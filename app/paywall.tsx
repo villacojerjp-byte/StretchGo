@@ -10,11 +10,11 @@ import { useStore } from '../src/store/store';
 import { colors, layout, radius, spacing, type, fonts } from '../src/theme';
 
 const FEATURES = [
-  'Unlimited guided routines',
-  'Personalised splits & flexibility plans',
+  'Unlimited flexibility routines',
+  'Personalised splits & backbend plans',
   'Follow-along timers & form cues',
   'Progress tracking and streaks',
-  'New routines added every month',
+  'New gymnastics routines every month',
 ];
 
 type Plan = 'yearly' | 'weekly';
@@ -46,7 +46,7 @@ export default function Paywall() {
           <PoseImage pose="splitSlide" style={styles.artImg as any} resizeMode="cover" />
         </View>
 
-        <Text style={styles.kicker}>STRETCH PREMIUM</Text>
+        <Text style={styles.kicker}>FLEXA PREMIUM</Text>
         <Text style={styles.title}>
           Unlock your full{'\n'}<Text style={styles.titleItalic}>flexibility journey</Text>
         </Text>

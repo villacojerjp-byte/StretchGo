@@ -13,11 +13,11 @@ import { greeting, prettyToday } from '../../src/utils/date';
 import { colors, radius, spacing, type, PASTELS, fonts } from '../../src/theme';
 
 const GOAL_TO_ROUTINE: Record<string, string> = {
-  splits: 'r_front_splits',
+  frontsplits: 'r_front_splits',
+  middlesplits: 'r_middle_splits',
+  backbend: 'r_full_flex',
   flexibility: 'r_full_flex',
-  pain: 'r_lower_back',
-  relax: 'r_evening_unwind',
-  posture: 'r_posture_reset',
+  shoulders: 'r_posture_reset',
 };
 
 export default function TodayScreen() {
@@ -164,7 +164,7 @@ export default function TodayScreen() {
       <View style={styles.closing}>
         <Ornament icon="flower1" color={colors.rose} />
         <Text style={styles.closingText}>
-          Move gently. Breathe <Text style={styles.closingItalic}>deeply.</Text>
+          Train with intention. Stretch a little <Text style={styles.closingItalic}>deeper.</Text>
         </Text>
       </View>
     </Screen>

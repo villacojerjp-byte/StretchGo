@@ -10,9 +10,9 @@ import { HERO_IMAGE } from '../../src/data/poseImages';
 import { colors, layout, spacing, type, fonts } from '../../src/theme';
 
 const HIGHLIGHTS = [
-  { icon: 'flower1', text: 'Guided routines for every level' },
-  { icon: 'stopwatch', text: 'Follow-along timers, no thinking' },
-  { icon: 'graph-up-arrow', text: 'Build flexibility you can feel' },
+  { icon: 'arrows-angle-expand', text: 'Splits, oversplits & straddles' },
+  { icon: 'flower2', text: 'Backbends, bridges & shoulders' },
+  { icon: 'stopwatch', text: 'Follow-along timers & form cues' },
 ] as const;
 
 export default function Welcome() {
@@ -32,13 +32,14 @@ export default function Welcome() {
       </View>
 
       <View style={styles.content}>
-        <Text style={styles.brand}>STRETCH</Text>
+        <Text style={styles.brand}>FLEXA · GYMNASTICS FLEXIBILITY</Text>
         <Ornament icon="flower1" color={colors.rose} />
         <Text style={styles.title}>
-          Your daily <Text style={styles.titleItalic}>ritual</Text> for a softer, more flexible body.
+          Master your <Text style={styles.titleItalic}>splits</Text> &amp; backbends.
         </Text>
         <Text style={styles.subtitle}>
-          Calm, guided stretching shaped around you — five mindful minutes at a time.
+          Guided flexibility training for gymnasts, dancers &amp; cheerleaders — progress your
+          splits and backbends, step by step.
         </Text>
 
         <View style={styles.list}>
@@ -54,7 +55,7 @@ export default function Welcome() {
       </View>
 
       <View style={styles.footer}>
-        <Button label="Begin your ritual" onPress={() => router.push('/onboarding/goal')} iconRight="arrow-right" />
+        <Button label="Start training" onPress={() => router.push('/onboarding/goal')} iconRight="arrow-right" />
         <Text style={styles.fine}>Takes about a minute · No account needed</Text>
       </View>
     </SafeAreaView>
@@ -74,11 +75,11 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     paddingTop: spacing.lg,
   },
-  brand: { ...type.overline, letterSpacing: 5, textAlign: 'center', marginBottom: spacing.md },
+  brand: { ...type.overline, letterSpacing: 2, textAlign: 'center', marginBottom: spacing.md, color: colors.rose },
   title: {
     ...type.display,
-    fontSize: 30,
-    lineHeight: 35,
+    fontSize: 29,
+    lineHeight: 34,
     textAlign: 'center',
     marginTop: spacing.base,
   },

@@ -5,11 +5,11 @@ import { OptionRow } from '../../src/components/primitives';
 import { useOnboarding } from '../../src/store/onboarding';
 
 const GOALS = [
-  { id: 'splits', label: 'Do the splits', description: 'Front and middle split progress', icon: 'arrows-angle-expand' },
-  { id: 'flexibility', label: 'Get more flexible', description: 'Full-body range of motion', icon: 'person-arms-up' },
-  { id: 'pain', label: 'Ease stiffness & pain', description: 'Loosen tight, achy muscles', icon: 'heart-pulse' },
-  { id: 'relax', label: 'Relax & de-stress', description: 'Calm the body and mind', icon: 'wind' },
-  { id: 'posture', label: 'Improve posture', description: 'Undo the effects of sitting', icon: 'person-standing' },
+  { id: 'frontsplits', label: 'Front splits', description: 'Left, right & full front splits', icon: 'arrows-angle-expand' },
+  { id: 'middlesplits', label: 'Middle splits & oversplits', description: 'Straddle and beyond 180°', icon: 'activity' },
+  { id: 'backbend', label: 'Backbends & bridges', description: 'Bridges, walkovers, scorpions', icon: 'flower2' },
+  { id: 'flexibility', label: 'Overall flexibility', description: 'Head-to-toe range of motion', icon: 'person-arms-up' },
+  { id: 'shoulders', label: 'Shoulders & back', description: 'Open shoulders and a bendy spine', icon: 'person-standing' },
 ] as const;
 
 export default function GoalStep() {

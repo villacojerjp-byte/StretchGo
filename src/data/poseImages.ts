@@ -2,60 +2,62 @@ import { ImageSourcePropType } from 'react-native';
 import { PoseKey } from './routines';
 
 /**
- * Bundled black & white model photos (free-licensed Unsplash stock, desaturated).
- * Each stretch pose maps to the closest matching photograph. Bundling keeps the
- * app fully offline and self-contained.
+ * Bundled colour photos of gymnasts & dancers in real flexibility positions
+ * (splits, oversplits, backbends, bridges, lunges). Free-licensed (Pexels),
+ * bundled so the app stays offline and self-contained.
  */
-const meditation = require('../../assets/poses/pose_meditation.jpg');
-const lunge = require('../../assets/poses/pose_lunge.jpg');
-const fold = require('../../assets/poses/pose_fold.jpg');
 const seated = require('../../assets/poses/pose_seated.jpg');
-const standing = require('../../assets/poses/pose_standing.jpg');
-const straddle = require('../../assets/poses/pose_straddle.jpg');
-const mermaid = require('../../assets/poses/pose_mermaid.jpg');
-const studio = require('../../assets/poses/pose_studio.jpg');
-const steps = require('../../assets/poses/pose_steps.jpg');
-const pilates = require('../../assets/poses/pose_pilates.jpg');
+const frontsplit = require('../../assets/poses/g_frontsplit.jpg');
+const frontsplit2 = require('../../assets/poses/g_frontsplit2.jpg');
+const middlesplit = require('../../assets/poses/g_middlesplit.jpg');
+const oversplit = require('../../assets/poses/g_oversplit.jpg');
+const lunge = require('../../assets/poses/g_lunge.jpg');
+const pancake = require('../../assets/poses/g_pancake.jpg');
+const backbend = require('../../assets/poses/g_backbend.jpg');
+const bridge = require('../../assets/poses/g_bridge.jpg');
+const standsplit = require('../../assets/poses/g_standsplit.jpg');
+const leap = require('../../assets/poses/g_leap.jpg');
 
+/** Each stretch pose → the gymnastics/dance photo that best shows it. */
 export const POSE_IMAGES: Record<PoseKey, ImageSourcePropType> = {
-  breathing: meditation,
-  forwardFold: straddle,
+  breathing: seated,
+  forwardFold: pancake,
   lunge: lunge,
   butterfly: seated,
-  seatedTwist: seated,
-  cobra: mermaid,
-  childPose: fold,
-  hamstring: straddle,
-  pigeon: mermaid,
-  sideBend: mermaid,
-  catCow: fold,
-  shoulderRoll: standing,
+  seatedTwist: bridge,
+  cobra: backbend,
+  childPose: pancake,
+  hamstring: middlesplit,
+  pigeon: backbend,
+  sideBend: middlesplit,
+  catCow: bridge,
+  shoulderRoll: standsplit,
   neckRelease: seated,
-  splitSlide: straddle,
-  quadStretch: standing,
+  splitSlide: frontsplit,
+  quadStretch: standsplit,
   calf: lunge,
 };
 
 /**
  * A distinct hero photo per routine so the list never looks repetitive.
- * Ordered to avoid the same image appearing on adjacent rows.
+ * Ordered so the same image never lands on adjacent rows.
  */
 export const ROUTINE_IMAGES: Record<string, ImageSourcePropType> = {
-  r_front_splits: straddle,
-  r_middle_splits: mermaid,
-  r_morning_wake: meditation,
-  r_evening_unwind: seated,
-  r_posture_reset: studio,
-  r_full_flex: standing,
-  r_lower_back: fold,
-  r_advanced_splits: lunge,
-  r_morning_energise: steps,
-  r_tech_neck: pilates,
-  r_hip_opener: mermaid,
-  r_deep_sleep: meditation,
-  r_straddle_pancake: straddle,
+  r_front_splits: frontsplit,
+  r_middle_splits: middlesplit,
+  r_morning_wake: lunge,
+  r_evening_unwind: pancake,
+  r_posture_reset: standsplit,
+  r_full_flex: backbend,
+  r_lower_back: bridge,
+  r_advanced_splits: oversplit,
+  r_morning_energise: leap,
+  r_tech_neck: seated,
+  r_hip_opener: lunge,
+  r_deep_sleep: pancake,
+  r_straddle_pancake: frontsplit2,
 };
 
-/** A hero image for marketing / welcome surfaces. */
-export const HERO_IMAGE: ImageSourcePropType = standing;
-export const CALM_IMAGE: ImageSourcePropType = meditation;
+/** Striking hero for the welcome / marketing surfaces. */
+export const HERO_IMAGE: ImageSourcePropType = middlesplit;
+export const CALM_IMAGE: ImageSourcePropType = seated;

@@ -8,11 +8,11 @@ import { useStore } from '../../src/store/store';
 import { colors, radius, spacing, type, shadow } from '../../src/theme';
 
 const GOAL_LABELS: Record<string, string> = {
-  splits: 'Do the splits',
-  flexibility: 'Get more flexible',
-  pain: 'Ease stiffness & pain',
-  relax: 'Relax & de-stress',
-  posture: 'Improve posture',
+  frontsplits: 'Front splits',
+  middlesplits: 'Middle splits & oversplits',
+  backbend: 'Backbends & bridges',
+  flexibility: 'Overall flexibility',
+  shoulders: 'Shoulders & back',
 };
 
 function timeLabel(hour: number) {
@@ -57,9 +57,9 @@ export default function ProfileScreen() {
           <Icon name="person-fill" size={26} color={colors.white} />
         </View>
         <View style={{ flex: 1 }}>
-          <Text style={styles.name}>Your practice</Text>
+          <Text style={styles.name}>Your training</Text>
           <Text style={styles.goalText}>
-            {profile?.goal ? GOAL_LABELS[profile.goal] : 'Flexibility journey'}
+            {profile?.goal ? GOAL_LABELS[profile.goal] : 'Flexibility training'}
           </Text>
         </View>
       </Card>
@@ -74,7 +74,7 @@ export default function ProfileScreen() {
         />
         <View style={{ flex: 1 }}>
           <Text style={styles.premiumKicker}>
-            {state.isPremium ? 'STRETCH PREMIUM' : 'UPGRADE'}
+            {state.isPremium ? 'FLEXA PREMIUM' : 'UPGRADE'}
           </Text>
           <Text style={styles.premiumTitle}>
             {state.isPremium ? 'You’re all unlocked' : 'Go Premium'}
@@ -139,14 +139,14 @@ export default function ProfileScreen() {
           <Divider />
           <LinkRow icon="lock" label="Privacy Policy" />
           <Divider />
-          <LinkRow icon="star" label="Rate Stretch" />
+          <LinkRow icon="star" label="Rate Flexa" />
         </Card>
 
         <Pressable onPress={confirmReset} style={styles.resetBtn}>
           <Icon name="arrow-clockwise" size={17} color={colors.inkSecondary} />
           <Text style={styles.resetText}>Reset all progress</Text>
         </Pressable>
-        <Text style={styles.version}>Stretch · v1.0.0</Text>
+        <Text style={styles.version}>Flexa · v1.0.0</Text>
       </View>
     </Screen>
   );
