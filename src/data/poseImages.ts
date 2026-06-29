@@ -30,17 +30,19 @@ const catcow = require('../../assets/poses/g_catcow.jpg');
 const cobra = require('../../assets/poses/g_cobra.jpg');
 const calf = require('../../assets/poses/g_calf.jpg');
 const neck = require('../../assets/poses/g_neck.jpg');
+const breathReach = require('../../assets/poses/g_breathing.jpg');
+const hamstring = require('../../assets/poses/g_hamstring.jpg');
 
 /** Each stretch pose → a photo of a person literally doing that exercise. */
 export const POSE_IMAGES: Record<PoseKey, ImageSourcePropType> = {
-  breathing: seated,
+  breathing: breathReach,
   forwardFold: forwardfold,
   lunge: lunge,
   butterfly: butterfly,
   seatedTwist: twist,
   cobra: cobra,
   childPose: childpose,
-  hamstring: middlesplit,
+  hamstring: hamstring,
   pigeon: pigeon,
   sideBend: sidebend,
   catCow: catcow,
