@@ -8,6 +8,7 @@ import Button from '../../src/components/Button';
 import PoseImage from '../../src/components/PoseImage';
 import { Pill } from '../../src/components/primitives';
 import { getRoutine } from '../../src/data/routines';
+import { ROUTINE_IMAGES } from '../../src/data/poseImages';
 import { colors, layout, radius, spacing, type } from '../../src/theme';
 
 function fmt(sec: number) {
@@ -40,6 +41,7 @@ export default function RoutineDetail() {
         <View style={styles.hero}>
           <PoseImage
             pose={routine.exercises[1]?.pose ?? 'forwardFold'}
+            source={ROUTINE_IMAGES[routine.id]}
             style={StyleSheet.absoluteFill as any}
             resizeMode="cover"
           />

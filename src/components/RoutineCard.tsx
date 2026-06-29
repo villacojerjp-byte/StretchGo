@@ -6,6 +6,7 @@ import Icon from './Icon';
 import PoseImage from './PoseImage';
 import { colors, radius, shadow, spacing, type } from '../theme';
 import { Routine } from '../data/routines';
+import { ROUTINE_IMAGES } from '../data/poseImages';
 
 function heroPose(routine: Routine) {
   return routine.exercises[1]?.pose ?? routine.exercises[0]?.pose ?? 'forwardFold';
@@ -18,7 +19,7 @@ export function FeaturedRoutineCard({ routine }: { routine: Routine }) {
       onPress={() => router.push(`/routine/${routine.id}`)}
       style={({ pressed }) => [styles.featured, shadow.card, pressed && styles.pressed]}
     >
-      <PoseImage pose={heroPose(routine)} style={StyleSheet.absoluteFill} resizeMode="cover" />
+      <PoseImage pose={heroPose(routine)} source={ROUTINE_IMAGES[routine.id]} style={StyleSheet.absoluteFill} resizeMode="cover" />
       <LinearGradient
         colors={['rgba(0,0,0,0.05)', 'rgba(0,0,0,0.35)', 'rgba(0,0,0,0.88)']}
         locations={[0, 0.5, 1]}
@@ -49,7 +50,7 @@ export function RoutineRow({ routine }: { routine: Routine }) {
       onPress={() => router.push(`/routine/${routine.id}`)}
       style={({ pressed }) => [styles.row, pressed && styles.pressed]}
     >
-      <PoseImage pose={heroPose(routine)} style={styles.rowArt} resizeMode="cover" />
+      <PoseImage pose={heroPose(routine)} source={ROUTINE_IMAGES[routine.id]} style={styles.rowArt} resizeMode="cover" />
       <View style={{ flex: 1 }}>
         <Text style={styles.rowTitle} numberOfLines={1}>
           {routine.title}
@@ -70,7 +71,7 @@ export function RoutineTile({ routine }: { routine: Routine }) {
       onPress={() => router.push(`/routine/${routine.id}`)}
       style={({ pressed }) => [styles.tile, pressed && styles.pressed]}
     >
-      <PoseImage pose={heroPose(routine)} style={styles.tileArt} resizeMode="cover" />
+      <PoseImage pose={heroPose(routine)} source={ROUTINE_IMAGES[routine.id]} style={styles.tileArt} resizeMode="cover" />
       <Text style={styles.tileCat}>{routine.category}</Text>
       <Text style={styles.tileTitle} numberOfLines={2}>
         {routine.title}

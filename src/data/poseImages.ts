@@ -13,6 +13,9 @@ const seated = require('../../assets/poses/pose_seated.jpg');
 const standing = require('../../assets/poses/pose_standing.jpg');
 const straddle = require('../../assets/poses/pose_straddle.jpg');
 const mermaid = require('../../assets/poses/pose_mermaid.jpg');
+const studio = require('../../assets/poses/pose_studio.jpg');
+const steps = require('../../assets/poses/pose_steps.jpg');
+const pilates = require('../../assets/poses/pose_pilates.jpg');
 
 export const POSE_IMAGES: Record<PoseKey, ImageSourcePropType> = {
   breathing: meditation,
@@ -31,6 +34,26 @@ export const POSE_IMAGES: Record<PoseKey, ImageSourcePropType> = {
   splitSlide: straddle,
   quadStretch: standing,
   calf: lunge,
+};
+
+/**
+ * A distinct hero photo per routine so the list never looks repetitive.
+ * Ordered to avoid the same image appearing on adjacent rows.
+ */
+export const ROUTINE_IMAGES: Record<string, ImageSourcePropType> = {
+  r_front_splits: straddle,
+  r_middle_splits: mermaid,
+  r_morning_wake: meditation,
+  r_evening_unwind: seated,
+  r_posture_reset: studio,
+  r_full_flex: standing,
+  r_lower_back: fold,
+  r_advanced_splits: lunge,
+  r_morning_energise: steps,
+  r_tech_neck: pilates,
+  r_hip_opener: mermaid,
+  r_deep_sleep: meditation,
+  r_straddle_pancake: straddle,
 };
 
 /** A hero image for marketing / welcome surfaces. */

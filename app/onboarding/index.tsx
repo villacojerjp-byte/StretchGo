@@ -1,5 +1,5 @@
 import React from 'react';
-import { Image, StyleSheet, Text, View } from 'react-native';
+import { Image, StyleSheet, Text, View, useWindowDimensions } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { LinearGradient } from 'expo-linear-gradient';
 import { router } from 'expo-router';
@@ -16,12 +16,16 @@ const HIGHLIGHTS = [
 ] as const;
 
 export default function Welcome() {
+  const { height } = useWindowDimensions();
+  // Fixed pixel height resolves reliably on web (percentage heights don't).
+  const heroH = Math.round(Math.max(240, Math.min(height * 0.42, 440)));
+
   return (
     <SafeAreaView style={styles.safe} edges={['bottom']}>
-      <View style={styles.hero}>
-        <Image source={HERO_IMAGE} style={StyleSheet.absoluteFill as any} resizeMode="cover" />
+      <View style={[styles.hero, { height: heroH }]}>
+        <Image source={HERO_IMAGE} style={styles.heroImg} resizeMode="cover" />
         <LinearGradient
-          colors={['rgba(0,0,0,0.15)', 'rgba(255,255,255,0)', colors.bg]}
+          colors={['rgba(0,0,0,0.12)', 'rgba(255,255,255,0)', colors.bg]}
           locations={[0, 0.55, 1]}
           style={StyleSheet.absoluteFill}
         />
@@ -29,7 +33,7 @@ export default function Welcome() {
 
       <View style={styles.content}>
         <Text style={styles.brand}>STRETCH</Text>
-        <Ornament icon="flower1" />
+        <Ornament icon="flower1" color={colors.rose} />
         <Text style={styles.title}>
           Your daily <Text style={styles.titleItalic}>ritual</Text> for a softer, more flexible body.
         </Text>
@@ -59,26 +63,28 @@ export default function Welcome() {
 
 const styles = StyleSheet.create({
   safe: { flex: 1, backgroundColor: colors.bg },
-  hero: { height: '44%', width: '100%', backgroundColor: colors.surfaceSunken },
+  hero: { width: '100%', backgroundColor: colors.surfaceSunken, overflow: 'hidden' },
+  heroImg: { width: '100%', height: '100%' },
   content: {
     flex: 1,
+    backgroundColor: colors.bg,
     paddingHorizontal: layout.screenPadding,
     width: '100%',
     maxWidth: layout.maxContentWidth,
     alignSelf: 'center',
-    marginTop: -spacing.sm,
+    paddingTop: spacing.lg,
   },
   brand: { ...type.overline, letterSpacing: 5, textAlign: 'center', marginBottom: spacing.md },
   title: {
     ...type.display,
-    fontSize: 32,
-    lineHeight: 37,
+    fontSize: 30,
+    lineHeight: 35,
     textAlign: 'center',
-    marginTop: spacing.lg,
+    marginTop: spacing.base,
   },
   titleItalic: { fontFamily: fonts.displayItalic, color: colors.rose },
-  subtitle: { ...type.body, marginTop: spacing.md, fontSize: 16, lineHeight: 23, textAlign: 'center' },
-  list: { marginTop: spacing.xl, gap: spacing.md, alignSelf: 'center' },
+  subtitle: { ...type.body, marginTop: spacing.md, fontSize: 15, lineHeight: 22, textAlign: 'center' },
+  list: { marginTop: spacing.lg, gap: spacing.md, alignSelf: 'center' },
   listItem: { flexDirection: 'row', alignItems: 'center', gap: spacing.md },
   listIcon: {
     width: 34,
@@ -90,6 +96,7 @@ const styles = StyleSheet.create({
   },
   listText: { ...type.bodyStrong, color: colors.ink },
   footer: {
+    backgroundColor: colors.bg,
     paddingHorizontal: layout.screenPadding,
     paddingTop: spacing.base,
     paddingBottom: spacing.sm,
