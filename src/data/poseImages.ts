@@ -17,24 +17,34 @@ const backbend = require('../../assets/poses/g_backbend.jpg');
 const bridge = require('../../assets/poses/g_bridge.jpg');
 const standsplit = require('../../assets/poses/g_standsplit.jpg');
 const leap = require('../../assets/poses/g_leap.jpg');
+// Literal pose photos — each shows a person actually doing that exercise.
+const forwardfold = require('../../assets/poses/g_forwardfold.jpg');
+const twist = require('../../assets/poses/g_twist.jpg');
+const childpose = require('../../assets/poses/g_childpose.jpg');
+const pigeon = require('../../assets/poses/g_pigeon.jpg');
+const sidebend = require('../../assets/poses/g_sidebend.jpg');
+const shoulder = require('../../assets/poses/g_shoulder.jpg');
+const quad = require('../../assets/poses/g_quad.jpg');
+const butterfly = require('../../assets/poses/g_butterfly.jpg');
+const catcow = require('../../assets/poses/g_catcow.jpg');
 
-/** Each stretch pose → the gymnastics/dance photo that best shows it. */
+/** Each stretch pose → a photo of a person literally doing that exercise. */
 export const POSE_IMAGES: Record<PoseKey, ImageSourcePropType> = {
   breathing: seated,
-  forwardFold: pancake,
+  forwardFold: forwardfold,
   lunge: lunge,
-  butterfly: seated,
-  seatedTwist: bridge,
+  butterfly: butterfly,
+  seatedTwist: twist,
   cobra: backbend,
-  childPose: pancake,
+  childPose: childpose,
   hamstring: middlesplit,
-  pigeon: backbend,
-  sideBend: middlesplit,
-  catCow: bridge,
-  shoulderRoll: standsplit,
+  pigeon: pigeon,
+  sideBend: sidebend,
+  catCow: catcow,
+  shoulderRoll: shoulder,
   neckRelease: seated,
   splitSlide: frontsplit,
-  quadStretch: standsplit,
+  quadStretch: quad,
   calf: lunge,
 };
 
