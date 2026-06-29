@@ -7,7 +7,7 @@ import Icon from '../../src/components/Icon';
 import Ornament from '../../src/components/Ornament';
 import Button from '../../src/components/Button';
 import { HERO_IMAGE } from '../../src/data/poseImages';
-import { colors, layout, spacing, type } from '../../src/theme';
+import { colors, layout, spacing, type, fonts } from '../../src/theme';
 
 const HIGHLIGHTS = [
   { icon: 'flower1', text: 'Guided routines for every level' },
@@ -30,7 +30,9 @@ export default function Welcome() {
       <View style={styles.content}>
         <Text style={styles.brand}>STRETCH</Text>
         <Ornament icon="flower1" />
-        <Text style={styles.title}>Your daily ritual for a softer, more flexible body.</Text>
+        <Text style={styles.title}>
+          Your daily <Text style={styles.titleItalic}>ritual</Text> for a softer, more flexible body.
+        </Text>
         <Text style={styles.subtitle}>
           Calm, guided stretching shaped around you — five mindful minutes at a time.
         </Text>
@@ -74,6 +76,7 @@ const styles = StyleSheet.create({
     textAlign: 'center',
     marginTop: spacing.lg,
   },
+  titleItalic: { fontFamily: fonts.displayItalic, color: colors.rose },
   subtitle: { ...type.body, marginTop: spacing.md, fontSize: 16, lineHeight: 23, textAlign: 'center' },
   list: { marginTop: spacing.xl, gap: spacing.md, alignSelf: 'center' },
   listItem: { flexDirection: 'row', alignItems: 'center', gap: spacing.md },

@@ -7,7 +7,7 @@ import * as Haptics from 'expo-haptics';
 import Button from '../src/components/Button';
 import PoseImage from '../src/components/PoseImage';
 import { useStore } from '../src/store/store';
-import { colors, layout, radius, spacing, type } from '../src/theme';
+import { colors, layout, radius, spacing, type, fonts } from '../src/theme';
 
 const FEATURES = [
   'Unlimited guided routines',
@@ -47,7 +47,9 @@ export default function Paywall() {
         </View>
 
         <Text style={styles.kicker}>STRETCH PREMIUM</Text>
-        <Text style={styles.title}>Unlock your full{'\n'}flexibility journey</Text>
+        <Text style={styles.title}>
+          Unlock your full{'\n'}<Text style={styles.titleItalic}>flexibility journey</Text>
+        </Text>
 
         <View style={styles.features}>
           {FEATURES.map((f) => (
@@ -159,6 +161,7 @@ const styles = StyleSheet.create({
   artImg: { width: '100%', height: 200, borderRadius: radius.lg, backgroundColor: colors.surfaceSunken },
   kicker: { ...type.overline, letterSpacing: 3, textAlign: 'center' },
   title: { ...type.title, fontSize: 30, lineHeight: 34, textAlign: 'center', marginTop: spacing.sm },
+  titleItalic: { fontFamily: fonts.displayItalic, color: colors.rose },
   features: { marginTop: spacing.xl, marginBottom: spacing.xl, gap: spacing.md },
   featureRow: { flexDirection: 'row', alignItems: 'center', gap: spacing.md },
   tick: {

@@ -10,6 +10,9 @@ import {
   Fraunces_600SemiBold,
   Fraunces_700Bold,
   Fraunces_900Black,
+  Fraunces_600SemiBold_Italic,
+  Fraunces_700Bold_Italic,
+  Fraunces_900Black_Italic,
 } from '@expo-google-fonts/fraunces';
 import {
   Inter_400Regular,
@@ -28,6 +31,9 @@ export default function RootLayout() {
     Fraunces_600SemiBold,
     Fraunces_700Bold,
     Fraunces_900Black,
+    Fraunces_600SemiBold_Italic,
+    Fraunces_700Bold_Italic,
+    Fraunces_900Black_Italic,
     Inter_400Regular,
     Inter_500Medium,
     Inter_600SemiBold,

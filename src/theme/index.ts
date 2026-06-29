@@ -1,7 +1,8 @@
 /**
- * Design system — strictly black & white.
- * Premium, editorial, minimal aesthetic: high-contrast serif display + clean
- * sans UI, generous spacing, soft neutral surfaces. No color, ever.
+ * Design system — soft, girly, editorial.
+ * Warm off-white base, full-colour model photography, a pastel accent family
+ * (blush · sage · butter · peach · lavender), a signature rose, and a
+ * high-contrast Fraunces serif with italic accents.
  */
 
 export const colors = {
@@ -9,34 +10,63 @@ export const colors = {
   black: '#000000',
   white: '#FFFFFF',
 
-  // Backgrounds & surfaces (true neutrals only — between black and white)
-  bg: '#FFFFFF',
-  surface: '#F4F4F2',
-  surfaceAlt: '#ECECEA',
-  surfaceSunken: '#E6E6E4',
+  // Backgrounds & surfaces (warm off-white)
+  bg: '#FFFCFB',
+  surface: '#F8F1EE',
+  surfaceAlt: '#F1E7E2',
+  surfaceSunken: '#EBDFD9',
 
-  // Ink (text)
-  ink: '#0A0A0A',
-  inkSecondary: '#5B5B5B',
-  inkTertiary: '#8C8C8C',
-  inkFaint: '#B6B6B6',
+  // Ink (warm near-black)
+  ink: '#241D21',
+  inkSecondary: '#6B5F63',
+  inkTertiary: '#9C9094',
+  inkFaint: '#C7BBBE',
   inkInverse: '#FFFFFF',
 
   // Lines
-  line: '#E4E4E2',
-  lineStrong: '#D2D2D0',
+  line: '#EEE4DF',
+  lineStrong: '#DFD3CD',
 
-  // States (rendered with neutrals)
+  // Signature accent
+  rose: '#D76A88',
+  roseDeep: '#C0536F',
+  roseSoft: '#F6D6DF',
+
+  // Pastel family
+  blush: '#F4B9C8',
+  blushBg: '#FBE3E9',
+  sage: '#BBD3B4',
+  sageBg: '#E3EFDD',
+  butter: '#F3DD9B',
+  butterBg: '#FBF1CD',
+  peach: '#F8C7A6',
+  peachBg: '#FCE6D7',
+  lavender: '#CDBDEA',
+  lavenderBg: '#ECE4F7',
+
+  // States
   overlay: 'rgba(0,0,0,0.55)',
   scrim: 'rgba(0,0,0,0.04)',
 } as const;
 
+/** Rotating pastel set for tiles (tile fill + soft text/number colour). */
+export const PASTELS: { bg: string; ink: string }[] = [
+  { bg: colors.blushBg, ink: '#B85C73' },
+  { bg: colors.butterBg, ink: '#A98620' },
+  { bg: colors.sageBg, ink: '#5E8456' },
+  { bg: colors.peachBg, ink: '#C2723E' },
+  { bg: colors.lavenderBg, ink: '#7E68A6' },
+];
+
 export const fonts = {
-  // Display serif (headlines, big numbers)
+  // Display serif (Fraunces) — roman + italic
   display: 'Fraunces_600SemiBold',
   displayBold: 'Fraunces_700Bold',
   displayBlack: 'Fraunces_900Black',
-  // UI sans
+  displayItalic: 'Fraunces_700Bold_Italic',
+  displaySemiItalic: 'Fraunces_600SemiBold_Italic',
+  blackItalic: 'Fraunces_900Black_Italic',
+  // UI sans (Inter)
   regular: 'Inter_400Regular',
   medium: 'Inter_500Medium',
   semibold: 'Inter_600SemiBold',
@@ -47,9 +77,13 @@ export const fonts = {
 export const type = {
   // Display (serif)
   hero: { fontFamily: fonts.displayBlack, fontSize: 52, lineHeight: 54, letterSpacing: -1.5, color: colors.ink },
+  heroItalic: { fontFamily: fonts.blackItalic, fontSize: 52, lineHeight: 54, letterSpacing: -1.5, color: colors.ink },
   display: { fontFamily: fonts.displayBold, fontSize: 38, lineHeight: 42, letterSpacing: -0.8, color: colors.ink },
+  displayItalic: { fontFamily: fonts.displayItalic, fontSize: 38, lineHeight: 42, letterSpacing: -0.8, color: colors.ink },
   title: { fontFamily: fonts.displayBold, fontSize: 28, lineHeight: 32, letterSpacing: -0.4, color: colors.ink },
+  titleItalic: { fontFamily: fonts.displayItalic, fontSize: 28, lineHeight: 32, letterSpacing: -0.4, color: colors.ink },
   serif: { fontFamily: fonts.display, fontSize: 22, lineHeight: 28, letterSpacing: -0.2, color: colors.ink },
+  serifItalic: { fontFamily: fonts.displaySemiItalic, fontSize: 22, lineHeight: 28, letterSpacing: -0.2, color: colors.ink },
 
   // UI (sans)
   h2: { fontFamily: fonts.bold, fontSize: 20, lineHeight: 26, letterSpacing: -0.2, color: colors.ink },
@@ -59,7 +93,6 @@ export const type = {
   small: { fontFamily: fonts.regular, fontSize: 14, lineHeight: 20, color: colors.inkSecondary },
   smallStrong: { fontFamily: fonts.semibold, fontSize: 14, lineHeight: 20, color: colors.ink },
   caption: { fontFamily: fonts.medium, fontSize: 12, lineHeight: 16, color: colors.inkTertiary },
-  // All-caps tracked label
   overline: {
     fontFamily: fonts.semibold,
     fontSize: 12,
@@ -96,23 +129,22 @@ export const layout = {
   maxContentWidth: 520,
 } as const;
 
-/** Subtle neutral shadow — used sparingly for elevation. */
 export const shadow = {
   card: {
-    shadowColor: '#000000',
-    shadowOpacity: 0.06,
+    shadowColor: '#3A2A2E',
+    shadowOpacity: 0.08,
     shadowRadius: 18,
     shadowOffset: { width: 0, height: 8 },
     elevation: 3,
   },
   floating: {
-    shadowColor: '#000000',
-    shadowOpacity: 0.12,
+    shadowColor: '#3A2A2E',
+    shadowOpacity: 0.14,
     shadowRadius: 24,
     shadowOffset: { width: 0, height: 12 },
     elevation: 8,
   },
 } as const;
 
-export const theme = { colors, fonts, type, spacing, radius, layout, shadow };
+export const theme = { colors, fonts, type, spacing, radius, layout, shadow, PASTELS };
 export default theme;

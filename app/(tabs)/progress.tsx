@@ -1,10 +1,11 @@
 import React, { useMemo } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
+import { LinearGradient } from 'expo-linear-gradient';
 import Icon, { BiName } from '../../src/components/Icon';
 import { Screen, SectionHeader, Card } from '../../src/components/primitives';
 import { useStore } from '../../src/store/store';
 import { lastSevenDays, toKey, addDays } from '../../src/utils/date';
-import { colors, radius, spacing, type } from '../../src/theme';
+import { colors, radius, spacing, type, shadow } from '../../src/theme';
 
 export default function ProgressScreen() {
   const { state, streak } = useStore();
@@ -40,9 +41,15 @@ export default function ProgressScreen() {
       </View>
 
       {/* Streak hero */}
-      <Card dark style={styles.streakCard}>
+      <View style={[styles.streakCard, shadow.card]}>
+        <LinearGradient
+          colors={[colors.rose, colors.roseDeep]}
+          start={{ x: 0, y: 0 }}
+          end={{ x: 1, y: 1 }}
+          style={StyleSheet.absoluteFill}
+        />
         <View style={styles.streakFlame}>
-          <Icon name="fire" size={24} color={colors.ink} />
+          <Icon name="fire" size={24} color={colors.roseDeep} />
         </View>
         <Text style={styles.streakNum}>{streak}</Text>
         <Text style={styles.streakLabel}>day streak</Text>
@@ -50,13 +57,13 @@ export default function ProgressScreen() {
           {week.map((d, i) => (
             <View key={i} style={styles.weekDay}>
               <View style={[styles.weekDot, d.active && styles.weekDotOn]}>
-                {d.active ? <Icon name="check-lg" size={13} color={colors.ink} /> : null}
+                {d.active ? <Icon name="check-lg" size={13} color={colors.roseDeep} /> : null}
               </View>
               <Text style={styles.weekLabel}>{d.label}</Text>
             </View>
           ))}
         </View>
-      </Card>
+      </View>
 
       {/* Stats grid */}
       <View style={styles.statsGrid}>
@@ -90,7 +97,7 @@ export default function ProgressScreen() {
 function StatCard({ icon, value, label }: { icon: BiName; value: string; label: string }) {
   return (
     <Card style={styles.statCard}>
-      <Icon name={icon} size={20} color={colors.inkSecondary} />
+      <Icon name={icon} size={20} color={colors.rose} />
       <Text style={styles.statValue}>{value}</Text>
       <Text style={styles.statLabel}>{label}</Text>
     </Card>
@@ -102,7 +109,13 @@ const styles = StyleSheet.create({
   title: { ...type.display, fontSize: 36 },
   subtitle: { ...type.small, color: colors.inkTertiary, marginTop: spacing.xs },
 
-  streakCard: { alignItems: 'center', paddingVertical: spacing.xl },
+  streakCard: {
+    alignItems: 'center',
+    paddingVertical: spacing.xl,
+    paddingHorizontal: spacing.lg,
+    borderRadius: radius.lg,
+    overflow: 'hidden',
+  },
   streakFlame: {
     width: 52, height: 52, borderRadius: 26, backgroundColor: colors.white,
     alignItems: 'center', justifyContent: 'center', marginBottom: spacing.md,
@@ -132,7 +145,7 @@ const styles = StyleSheet.create({
     borderRadius: 6,
     backgroundColor: colors.surfaceSunken,
   },
-  cellOn: { backgroundColor: colors.ink },
+  cellOn: { backgroundColor: colors.rose },
   legend: { flexDirection: 'row', alignItems: 'center', gap: 6, marginTop: spacing.base, justifyContent: 'flex-end' },
   legendCell: { width: 16, aspectRatio: 1 },
   legendText: { ...type.caption, color: colors.inkTertiary },

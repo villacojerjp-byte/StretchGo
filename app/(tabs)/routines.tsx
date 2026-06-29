@@ -75,7 +75,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  chipActive: { backgroundColor: colors.ink },
+  chipActive: { backgroundColor: colors.rose },
   chipText: { ...type.smallStrong, color: colors.inkSecondary },
   chipTextActive: { color: colors.white },
   list: { marginTop: spacing.sm },

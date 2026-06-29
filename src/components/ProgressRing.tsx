@@ -17,7 +17,7 @@ export default function ProgressRing({
   size = 120,
   stroke = 12,
   trackColor = colors.surfaceSunken,
-  fillColor = colors.ink,
+  fillColor = colors.rose,
   children,
 }: Props) {
   const clamped = Math.max(0, Math.min(1, progress));

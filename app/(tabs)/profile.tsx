@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { Alert, Pressable, StyleSheet, Switch, Text, View } from 'react-native';
+import { LinearGradient } from 'expo-linear-gradient';
 import { router } from 'expo-router';
 import Icon, { BiName } from '../../src/components/Icon';
 import { Screen, SectionHeader, Card, Divider } from '../../src/components/primitives';
 import { useStore } from '../../src/store/store';
-import { colors, radius, spacing, type } from '../../src/theme';
+import { colors, radius, spacing, type, shadow } from '../../src/theme';
 
 const GOAL_LABELS: Record<string, string> = {
   splits: 'Do the splits',
@@ -64,25 +65,29 @@ export default function ProfileScreen() {
       </Card>
 
       {/* Premium */}
-      <Pressable onPress={() => router.push('/paywall')}>
-        <Card dark style={styles.premium}>
-          <View style={{ flex: 1 }}>
-            <Text style={styles.premiumKicker}>
-              {state.isPremium ? 'STRETCH PREMIUM' : 'UPGRADE'}
-            </Text>
-            <Text style={styles.premiumTitle}>
-              {state.isPremium ? 'You’re all unlocked' : 'Go Premium'}
-            </Text>
-            <Text style={styles.premiumSub}>
-              {state.isPremium
-                ? 'Enjoy every routine and feature.'
-                : 'Unlock all routines and plans.'}
-            </Text>
-          </View>
-          <View style={styles.premiumIcon}>
-            <Icon name={state.isPremium ? 'check-lg' : 'arrow-right'} size={20} color={colors.ink} />
-          </View>
-        </Card>
+      <Pressable onPress={() => router.push('/paywall')} style={[styles.premium, shadow.card]}>
+        <LinearGradient
+          colors={[colors.rose, colors.roseDeep]}
+          start={{ x: 0, y: 0 }}
+          end={{ x: 1, y: 1 }}
+          style={StyleSheet.absoluteFill}
+        />
+        <View style={{ flex: 1 }}>
+          <Text style={styles.premiumKicker}>
+            {state.isPremium ? 'STRETCH PREMIUM' : 'UPGRADE'}
+          </Text>
+          <Text style={styles.premiumTitle}>
+            {state.isPremium ? 'You’re all unlocked' : 'Go Premium'}
+          </Text>
+          <Text style={styles.premiumSub}>
+            {state.isPremium
+              ? 'Enjoy every routine and feature.'
+              : 'Unlock all routines and plans.'}
+          </Text>
+        </View>
+        <View style={styles.premiumIcon}>
+          <Icon name={state.isPremium ? 'check-lg' : 'arrow-right'} size={20} color={colors.roseDeep} />
+        </View>
       </Pressable>
 
       {/* Your plan */}
@@ -197,13 +202,20 @@ const styles = StyleSheet.create({
 
   identity: { flexDirection: 'row', alignItems: 'center', gap: spacing.base },
   avatar: {
-    width: 56, height: 56, borderRadius: 28, backgroundColor: colors.ink,
+    width: 56, height: 56, borderRadius: 28, backgroundColor: colors.rose,
     alignItems: 'center', justifyContent: 'center',
   },
   name: { ...type.h2 },
   goalText: { ...type.small, color: colors.inkTertiary, marginTop: 2 },
 
-  premium: { flexDirection: 'row', alignItems: 'center', marginTop: spacing.md },
+  premium: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginTop: spacing.md,
+    borderRadius: radius.lg,
+    padding: spacing.lg,
+    overflow: 'hidden',
+  },
   premiumKicker: { ...type.overline, color: 'rgba(255,255,255,0.6)' },
   premiumTitle: { ...type.h2, color: colors.white, marginTop: 4 },
   premiumSub: { ...type.small, color: 'rgba(255,255,255,0.65)', marginTop: 2 },

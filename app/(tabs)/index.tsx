@@ -10,7 +10,7 @@ import { useStore, WATER_GOAL } from '../../src/store/store';
 import { ROUTINES, getRoutine, Routine } from '../../src/data/routines';
 import { DAILY_PROMISES } from '../../src/data/promises';
 import { greeting, prettyToday } from '../../src/utils/date';
-import { colors, radius, spacing, type } from '../../src/theme';
+import { colors, radius, spacing, type, PASTELS, fonts } from '../../src/theme';
 
 const GOAL_TO_ROUTINE: Record<string, string> = {
   splits: 'r_front_splits',
@@ -87,20 +87,23 @@ export default function TodayScreen() {
           </View>
           {DAILY_PROMISES.map((p, i) => {
             const done = isPromiseDone(p.id);
+            const pastel = PASTELS[i % PASTELS.length];
             return (
               <Pressable
                 key={p.id}
                 onPress={() => onPromise(p.id)}
                 style={[styles.promiseRow, i === DAILY_PROMISES.length - 1 && { borderBottomWidth: 0 }]}
               >
-                <View style={[styles.checkbox, done && styles.checkboxOn]}>
-                  {done ? <Icon name="check-lg" size={16} color={colors.white} /> : null}
+                <View style={[styles.numTile, { backgroundColor: pastel.bg }]}>
+                  <Text style={[styles.numText, { color: pastel.ink }]}>{i + 1}</Text>
                 </View>
                 <View style={{ flex: 1 }}>
                   <Text style={[styles.promiseTitle, done && styles.promiseTitleDone]}>{p.title}</Text>
                   <Text style={styles.promiseDetail}>{p.detail}</Text>
                 </View>
-                <Icon name={p.icon} size={19} color={colors.inkFaint} />
+                <View style={[styles.checkCircle, done && styles.checkCircleOn]}>
+                  {done ? <Icon name="check-lg" size={15} color={colors.white} /> : null}
+                </View>
               </Pressable>
             );
           })}
@@ -159,8 +162,10 @@ export default function TodayScreen() {
       </View>
 
       <View style={styles.closing}>
-        <Ornament icon="flower1" />
-        <Text style={styles.closingText}>Move gently. Breathe deeply.</Text>
+        <Ornament icon="flower1" color={colors.rose} />
+        <Text style={styles.closingText}>
+          Move gently. Breathe <Text style={styles.closingItalic}>deeply.</Text>
+        </Text>
       </View>
     </Screen>
   );
@@ -179,7 +184,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     gap: 5,
-    backgroundColor: colors.ink,
+    backgroundColor: colors.rose,
     borderRadius: radius.pill,
     paddingHorizontal: 14,
     height: 38,
@@ -201,16 +206,24 @@ const styles = StyleSheet.create({
     borderBottomWidth: 1,
     borderBottomColor: colors.line,
   },
-  checkbox: {
-    width: 28,
-    height: 28,
-    borderRadius: 9,
+  numTile: {
+    width: 46,
+    height: 46,
+    borderRadius: 13,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  numText: { fontFamily: fonts.displayBold, fontSize: 21, lineHeight: 23 },
+  checkCircle: {
+    width: 27,
+    height: 27,
+    borderRadius: 14,
     borderWidth: 2,
     borderColor: colors.lineStrong,
     alignItems: 'center',
     justifyContent: 'center',
   },
-  checkboxOn: { backgroundColor: colors.ink, borderColor: colors.ink },
+  checkCircleOn: { backgroundColor: colors.ink, borderColor: colors.ink },
   promiseTitle: { ...type.bodyStrong, color: colors.ink },
   promiseTitleDone: { color: colors.inkTertiary, textDecorationLine: 'line-through' },
   promiseDetail: { ...type.caption, color: colors.inkTertiary, marginTop: 1 },
@@ -226,7 +239,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  cupFilled: { backgroundColor: colors.ink, borderColor: colors.ink },
+  cupFilled: { backgroundColor: '#B9A3DE', borderColor: '#B9A3DE' },
   waterHint: { ...type.caption, color: colors.inkTertiary, marginTop: spacing.md },
 
   quickRow: {
@@ -251,5 +264,6 @@ const styles = StyleSheet.create({
   quickSub: { ...type.small, color: colors.inkTertiary, marginTop: 2 },
 
   closing: { alignItems: 'center', marginTop: spacing.xxl, gap: spacing.md },
-  closingText: { ...type.serif, color: colors.inkTertiary, fontSize: 18 },
+  closingText: { ...type.serif, color: colors.inkSecondary, fontSize: 18, textAlign: 'center' },
+  closingItalic: { fontFamily: fonts.displaySemiItalic, color: colors.rose },
 });
