@@ -153,7 +153,7 @@ export default function SessionPlayer() {
         </Text>
 
         <View style={styles.ringWrap}>
-          <ProgressRing progress={ringProgress} size={170} stroke={12}>
+          <ProgressRing progress={ringProgress} size={170} stroke={12} fillColor={colors.gold}>
             {prepping ? (
               <>
                 <Text style={styles.getReady}>GET READY</Text>

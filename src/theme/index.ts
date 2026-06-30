@@ -32,6 +32,9 @@ export const colors = {
   roseDeep: '#C0536F',
   roseSoft: '#F6D6DF',
 
+  // Timer / progress-ring accent
+  gold: '#F2B705',
+
   // Pastel family
   blush: '#F4B9C8',
   blushBg: '#FBE3E9',
